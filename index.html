@@ -2,135 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="AK Knowledge World is your go-to source for cool math tricks, visuals, and easy explanations. Learn math the fun way!">
-  <meta name="keywords" content="math, education, AK Knowledge World, YouTube, learning, class 12, tricks">
-  <meta name="author" content="Abhay Kumar Rai">
-  <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ak Knowledge World</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <meta name="google-site-verification" content="Rjz_rk5hlXDglI2OmrNZ7t3sFwpv6px1EjAy52DXLaI" />
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      overflow-x: hidden;
-    }
-
-    header {
-      padding: 2rem 1rem;
-      text-align: center;
-      background: #161616;
-      animation: zoomIn 1.2s ease-out;
-    }
-
-    header img {
-      height: 200px;
-      margin-bottom: 0.1rem;
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      color: #00ffe1;
-      text-shadow: 0 0 10px #00ffe1;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #cfcfcf;
-    }
-
-    @keyframes zoomIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-      background: #1c1c1c;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(0, 255, 225, 0.2);
-      margin-top: 2rem;
-      animation: fadeUp 1.4s ease;
-    }
-
-    @keyframes fadeUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    h2 {
-      color: #00ffcc;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 8px #00ffcc;
-    }
-
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
-
-    .videos iframe {
-      margin-top: 1rem;
-      width: 100%;
-      height: 600px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-    }
-
-    .contact a {
-      color: #00ffe1;
-      text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #121212;
-      color: #999;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link href="style.css" rel="stylesheet">
+  
 </head>
 <body>
   <header>
@@ -144,6 +20,118 @@
       <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
     </div>
   </section>
+
+  <section class="downloads">
+    <h2>📚 Download Notes</h2>
+    
+    <div style="text-align: center; margin: 30px;">
+      <select id="subjectSelect" onchange="populateClasses()" style="padding: 10px; font-size: 16px;">
+        <option value="">-- Select Subject --</option>
+        <option value="math">Math</option>
+        
+      </select>
+  
+      <select id="classSelect" onchange="populateChapters()" style="padding: 10px; font-size: 16px; margin-left: 10px;">
+        <option value="">-- Select Class --</option>
+      </select>
+  
+      <select id="chapterSelect" onchange="openPDF()" style="padding: 10px; font-size: 16px; margin-left: 10px;">
+        <option value="">-- Select Chapter --</option>
+      </select>
+    </div>
+  </section>
+  
+  
+  <script>
+    function openPDF() {
+      const select = document.getElementById("pdfSelect");
+      const selectedPDF = select.value;
+      if (selectedPDF) {
+        window.open(selectedPDF, "_blank");
+      }
+    }
+  </script>
+  <script>
+    const data = {
+      math: {
+        "Class 11": {
+          "Chapter 1 – SETS": "pdfs/math/class11/chapter1.pdf",
+          "Chapter 2 – RELATIONS AND FUNCTIONSs": "pdfs/math/class11/chapter2.pdf",
+          "Chapter 3 – TRIGONOMETRIC FUNCTIONS": "pdfs/math/class11/chapter3.pdf",
+          "Chapter 4 – COMPLEX NUMBERS AND QUADRATIC EQUATIONS": "pdfs/math/class11/chapter4.pdf",
+          "Chapter 5 – LINEAR INEQUALITIES": "pdfs/math/class11/chapter5.pdf",
+          "Chapter 6 – PERMUTATIONS AND COMBINATIONS": "pdfs/math/class11/chapter6.pdf",
+          "Chapter 7 – BINOMIALTHEOREM": "pdfs/math/class11/chapter7.pdf",
+          "Chapter 8 – SEQUENCES AND SERIES": "pdfs/math/class11/chapter8.pdf",
+          "Chapter 9 – STRAIGHT LINES": "pdfs/math/class11/chapter9.pdf",
+          "Chapter 10 – CONIC SECTIONS": "pdfs/math/class11/chapter10.pdf",
+          "Chapter 11 – INTRODUCTION TO THREE DIMENSIONAL GEOMETRY": "pdfs/math/class11/chapter11.pdf",
+          "Chapter 12 – LIMITS AND DERIVATIVES": "pdfs/math/class11/chapter12.pdf",
+          "Chapter 13 – STATISTICS": "pdfs/math/class11/chapter13.pdf"
+        },
+        "Class 12": {
+          "Chapter 1 – RELATIONS AND FUNCTIONS": "pdfs/math/class12/chapter1.pdf",
+          "Chapter 2 – INVERSE TRIGONOMETRIC FUNCTIONS": "pdfs/math/class12/chapter2.pdf",
+          "Chapter 3 – MATRICES": "pdfs/math/class12/chapter3.pdf",
+          "Chapter 4 – DETERMINANTS": "pdfs/math/class12/chapter4.pdf",
+          "Chapter 5 – CONTINUITY AND DIFFERENTIABILITY": "pdfs/math/class12/chapter5.pdf",
+          "Chapter 6 – APPLICATION OF DERIVATIVES": "pdfs/math/class12/chapter6.pdf",
+          "Chapter 7 – INTEGRALS": "pdfs/math/class12/chapter7.pdf",
+          "Chapter 8 – APPLICATION OF INTEGRALS": "pdfs/math/class12/chapter8.pdf",
+          "Chapter 9 – DIFFERENTIAL EQUATIONS": "pdfs/math/class12/chapter9.pdf",
+          "Chapter 10 – VECTOR ALGEBRA": "pdfs/math/class12/chapter1.pdf",
+          "Chapter 11 – THREE DIMENSIONAL GEOMETRY": "pdfs/math/class12/chapter11.pdf",
+          "Chapter 12 – LINEAR PROGRAMMING": "pdfs/math/class12/chapter12.pdf",
+          "Chapter 13 – PROBABILITY": "pdfs/math/class12/chapter13.pdf"
+        }
+      }
+    };
+  
+    function populateClasses() {
+      const subject = document.getElementById("subjectSelect").value;
+      const classSelect = document.getElementById("classSelect");
+      const chapterSelect = document.getElementById("chapterSelect");
+  
+      classSelect.innerHTML = '<option value="">-- Select Class --</option>';
+      chapterSelect.innerHTML = '<option value="">-- Select Chapter --</option>';
+  
+      if (subject && data[subject]) {
+        for (let classKey in data[subject]) {
+          const option = document.createElement("option");
+          option.value = classKey;
+          option.textContent = classKey;
+          classSelect.appendChild(option);
+        }
+      }
+    }
+  
+    function populateChapters() {
+      const subject = document.getElementById("subjectSelect").value;
+      const className = document.getElementById("classSelect").value;
+      const chapterSelect = document.getElementById("chapterSelect");
+  
+      chapterSelect.innerHTML = '<option value="">-- Select Chapter --</option>';
+  
+      if (subject && className && data[subject][className]) {
+        const chapters = data[subject][className];
+        for (let chapterName in chapters) {
+          const option = document.createElement("option");
+          option.value = chapters[chapterName];
+          option.textContent = chapterName;
+          chapterSelect.appendChild(option);
+        }
+      }
+    }
+  
+    function openPDF() {
+      const chapterLink = document.getElementById("chapterSelect").value;
+      if (chapterLink) {
+        window.open(chapterLink, "_blank");
+      }
+    }
+  </script>
+  
+  
 
   <section class="about">
     <h2>About Ak Knowledge World</h2>
