@@ -22,27 +22,100 @@
   </section>
 
   <section class="downloads">
-    <h2>📚 Download Notes</h2>
+    <h2>Download Book PDFs</h2>
     
-    <div style="text-align: center; margin: 30px;">
-      <select id="subjectSelect" onchange="populateClasses()" style="padding: 10px; font-size: 16px;">
+    <div class="dropdown-container">
+      <label for="subjectSelect">📚 Subject:</label>
+      <select id="subjectSelect" onchange="populateClasses()">
         <option value="">-- Select Subject --</option>
         <option value="math">Math</option>
         
       </select>
+    </div>
   
-      <select id="classSelect" onchange="populateChapters()" style="padding: 10px; font-size: 16px; margin-left: 10px;">
+    <div class="dropdown-container">
+      <label for="classSelect">🎓 Class:</label>
+      <select id="classSelect" onchange="populateChapters()">
         <option value="">-- Select Class --</option>
+        <option value="">Class 11</option>
+        <option value="">Class 12</option>
       </select>
+    </div>
   
-      <select id="chapterSelect" onchange="openPDF()" style="padding: 10px; font-size: 16px; margin-left: 10px;">
+    <div class="dropdown-container">
+      <label for="chapterSelect">📖 Chapter:</label>
+      <select id="chapterSelect" onchange="openChapterPDF()">
         <option value="">-- Select Chapter --</option>
       </select>
     </div>
   </section>
   
   
+  
   <script>
+    const chapterPDFs = {
+  math: {
+    "12": {
+      "1": "math_class12_ch1.pdf",
+      "2": "math_class12_ch2.pdf"
+    },
+    "11": {
+      "1": "math_class11_ch1.pdf"
+    }
+  },
+  physics: {
+    "12": {
+      "1": "physics_class12_ch1.pdf",
+      "2": "physics_class12_ch2.pdf"
+    }
+  },
+  chemistry: {
+    "12": {
+      "1": "chem_class12_ch1.pdf"
+    }
+  }
+};
+
+function populateClasses() {
+  const subject = document.getElementById("subjectSelect").value;
+  const classSelect = document.getElementById("classSelect");
+  classSelect.innerHTML = '<option value="">-- Select Class --</option>';
+
+  if (subject && chapterPDFs[subject]) {
+    Object.keys(chapterPDFs[subject]).forEach(cls => {
+      const option = document.createElement("option");
+      option.value = cls;
+      option.textContent = `Class ${cls}`;
+      classSelect.appendChild(option);
+    });
+  }
+
+  document.getElementById("chapterSelect").innerHTML = '<option value="">-- Select Chapter --</option>';
+}
+
+function populateChapters() {
+  const subject = document.getElementById("subjectSelect").value;
+  const selectedClass = document.getElementById("classSelect").value;
+  const chapterSelect = document.getElementById("chapterSelect");
+  chapterSelect.innerHTML = '<option value="">-- Select Chapter --</option>';
+
+  if (subject && selectedClass && chapterPDFs[subject][selectedClass]) {
+    Object.keys(chapterPDFs[subject][selectedClass]).forEach(chap => {
+      const option = document.createElement("option");
+      option.value = chapterPDFs[subject][selectedClass][chap];
+      option.textContent = `Chapter ${chap}`;
+      chapterSelect.appendChild(option);
+    });
+  }
+}
+
+function openChapterPDF() {
+  const chapter = document.getElementById("chapterSelect").value;
+  if (chapter) {
+    window.open(chapter, "_blank");
+  }
+}
+
     function openPDF() {
       const select = document.getElementById("pdfSelect");
       const selectedPDF = select.value;
